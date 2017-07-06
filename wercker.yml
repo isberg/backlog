@@ -34,3 +34,16 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
+
+deploy:
+ box: emmanuelrosa/elm-reactor
+ steps:
+   - script:
+     name: debug
+     code: echo $USERNAME
+   - internal/docker-push:
+       username: $USERNAME
+       password: $PASSWORD
+       port: 8000
+       tag: latest, $WERCKER_GIT_COMMIT, $WERCKER_GIT_BRANCH
+       repository: isberg/backlog
