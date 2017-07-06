@@ -34,16 +34,27 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
-
+          
+# http://devcenter.wercker.com/docs/workflows
 deploy:
- box: emmanuelrosa/elm-reactor
- steps:
-   - script:
-     name: debug
-     code: echo $USERNAME
-   - internal/docker-push:
-       username: $USERNAME
-       password: $PASSWORD
-       port: 8000
-       tag: latest, $WERCKER_GIT_COMMIT, $WERCKER_GIT_BRANCH
-       repository: isberg/backlog
+  box:
+    id: nginx:alpine
+    cmd: /bin/sh
+
+  steps:
+    - script:
+        name: cleanup build result
+        code: |
+          rm -rf *
+    - script:
+      name: debug
+      code: echo $USERNAME
+      
+    # push container as-is
+    - internal/docker-push:
+        disable-sync: true
+        username: $USERNAME
+        password: $PASSWORD
+        port: 8000
+        tag: latest, $WERCKER_GIT_COMMIT, $WERCKER_GIT_BRANCH
+        repository: isberg/backlog        
