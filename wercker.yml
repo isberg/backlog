@@ -1,27 +1,16 @@
 
-box: node
+box: node:7.2.0
 build:
   steps:
     - script:
         name: install elm locally
         code: |
-          npm install elm@0.18.0
-    - script:
-        name: find elm installation
-        code: |
-          echo "elm install dir:"
-          ls /pipeline/source/node_modules/elm/Elm-Platform/
-          echo "elm install dir:"
-          ls /pipeline/source/node_modules/elm/Elm-Platform/0.18.0
-          echo "current dir:"
-          pwd
-          echo "target?:"
-          ls node_modules/elm/Elm-Platform/0.18.0
+          npm install -g elm@0.18.0
+
     - script:
         name: debug elm
         code: |
-          ./node_modules/elm/Elm-Platform/0.18.0/elm
-          ./node_modules/elm/Elm-Platform/0.18.0/elm make
+          elm-make -h
           
 # http://devcenter.wercker.com/docs/workflows
 deploy:
