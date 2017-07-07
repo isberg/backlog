@@ -3,7 +3,7 @@ box: node:7.2.0
 build:
   steps:
     - script:
-        name: install elm locally
+        name: install elm globally
         code: |
           npm install -g elm@0.18.0
 
@@ -11,6 +11,11 @@ build:
         name: debug elm
         code: |
           elm-make -h
+
+    - script:
+        name: elm-make
+        code: |
+          elm-make Main.elm --output=index.html
           
 # http://devcenter.wercker.com/docs/workflows
 deploy:
