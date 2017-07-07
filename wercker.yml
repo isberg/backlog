@@ -9,6 +9,11 @@ build:
     - script:
         name: find elm installation
         code: |
+          echo "elm install dir:"
+          ls /pipeline/source/node_modules/elm
+          echo "current dir:"
+          pwd
+          echo "target?:"
           ls node_modules/elm/Elm-Platform/0.18.0
     - script:
         name: debug elm
