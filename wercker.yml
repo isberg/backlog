@@ -5,7 +5,7 @@ build:
     - script:
         name: install elm
         code: |
-          npm install -g elm@0.18.0
+          sudo npm install -g elm@0.18.0
           
 # http://devcenter.wercker.com/docs/workflows
 deploy:
