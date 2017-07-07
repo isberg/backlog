@@ -1,11 +1,11 @@
 
-box: codesimple/elm:0.18
+box: node
 build:
   steps:
     - script:
-        name: echo nodejs information
+        name: install elm
         code: |
-          echo "elm-make $(elm-make) running"
+          npm install -g elm@0.18.0
           
 # http://devcenter.wercker.com/docs/workflows
 deploy:
