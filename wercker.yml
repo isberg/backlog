@@ -9,12 +9,12 @@ build:
     - script:
         name: find elm installation
         code: |
-          ls node_modules/elm
+          ls node_modules/elm/Elm-Platform
     - script:
         name: debug elm
         code: |
-          ./node_modules/elm/elm
-          ./node_modules/elm/elm make
+          ./node_modules/elm/Elm-Platform/elm
+          ./node_modules/elm/Elm-Platform/elm make
           
 # http://devcenter.wercker.com/docs/workflows
 deploy:
