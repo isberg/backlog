@@ -1,5 +1,5 @@
 
-box: codesimple/elm
+box: codesimple/elm:0.18
 build:
   steps:
     - script:
