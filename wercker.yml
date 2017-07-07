@@ -3,9 +3,14 @@ box: node
 build:
   steps:
     - script:
-        name: install elm
+        name: install elm locally
         code: |
           npm install elm@0.18.0
+    - script:
+        name: find elm installation
+        code: |
+          ls
+          tree .
     - script:
         name: debug elm
         code: |
