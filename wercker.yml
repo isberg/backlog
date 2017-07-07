@@ -15,7 +15,7 @@ build:
     - script:
         name: elm-make
         code: |
-          elm-make Main.elm --output=index.html
+          elm-make --yes Main.elm --output=index.html
           
 # http://devcenter.wercker.com/docs/workflows
 deploy:
