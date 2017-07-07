@@ -5,7 +5,7 @@ build:
     - script:
         name: install elm
         code: |
-          sudo mkdir '/usr/local/lib/node_modules/elm/Elm-Platform'
+          sudo mkdir -p '/usr/local/lib/node_modules/elm/Elm-Platform'
           sudo npm install -g elm@0.18.0
           
 # http://devcenter.wercker.com/docs/workflows
