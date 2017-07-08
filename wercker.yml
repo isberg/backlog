@@ -30,12 +30,7 @@ deploy:
     - script:
         name: cleanup build result
         code: |
-         rm -rf /pipeline
-    - script:
-        name: debug
-        code: |
-          echo $USERNAME
-          ls /usr/share/nginx/html
+          rm -rf /pipeline
       
     # push container as-is
     - internal/docker-push:
