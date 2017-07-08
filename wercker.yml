@@ -21,6 +21,7 @@ build:
 deploy:
   box:
     id: nginx:alpine
+    cmd: nginx -g daemon off
 
   steps:
     - script:
