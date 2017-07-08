@@ -15,7 +15,7 @@ build:
     - script:
         name: elm-make
         code: |
-          elm-make --yes Main.elm --output=index.html
+          elm-make --yes Main.elm --output=../output/index.html
           
 # http://devcenter.wercker.com/docs/workflows
 deploy:
@@ -26,10 +26,13 @@ deploy:
     - script:
         name: cleanup build result
         code: |
+          echo "considering cleaning ${pwd}"
          # rm -rf *
     - script:
-      name: debug
-      code: echo $USERNAME
+        name: debug
+        code: |
+          echo $USERNAME
+          ls /pipeline/output
       
     # push container as-is
     - internal/docker-push:
