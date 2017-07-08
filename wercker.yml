@@ -15,7 +15,7 @@ build:
     - script:
         name: elm-make
         code: |
-          elm-make --yes Main.elm --output=../output/index.html
+          elm-make --yes Main.elm --output=index.html
           
 # http://devcenter.wercker.com/docs/workflows
 deploy:
@@ -24,15 +24,18 @@ deploy:
 
   steps:
     - script:
+        name: copy files to nginx
+        code: |
+          cp /pipeline/source/index.html /usr/share/nginx/html
+    - script:
         name: cleanup build result
         code: |
-          echo "considering cleaning ${pwd}"
-         # rm -rf *
+         rm -rf /pipeline
     - script:
         name: debug
         code: |
           echo $USERNAME
-          ls /pipeline/output
+          ls /usr/share/nginx/html
       
     # push container as-is
     - internal/docker-push:
