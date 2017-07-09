@@ -46,7 +46,7 @@ deploy:
 #    id: timfallmk/hyper-cli
 #    cmd: /bin/sh
   
-  stps:
+  steps:
     - script: 
         name: install hyper-cli
         code: |
