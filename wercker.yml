@@ -30,7 +30,8 @@ push:
     - script:
         name: cleanup build result
         code: |
-          rm -rf /pipeline
+          rm -rf elm-stuff
+          #rm -rf /pipeline
       
     # push container as-is
     - internal/docker-push:
