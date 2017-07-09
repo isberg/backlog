@@ -17,6 +17,11 @@ build:
         code: |
           elm-make --yes Main.elm --output=index.html
           
+    - script:
+        name: cleanup build result
+        code: |
+          rm -rf elm-stuff          
+          
 # http://devcenter.wercker.com/docs/workflows
 push:
   box:
@@ -28,10 +33,9 @@ push:
         code: |
           cp /pipeline/source/index.html /usr/share/nginx/html
     - script:
-        name: cleanup build result
+        name: copy from pipeline/input to pipeline output
         code: |
-          rm -rf elm-stuff
-          #rm -rf /pipeline
+          copy /pipeline/input/*.html /pipeline/output
       
     # push container as-is
     - internal/docker-push:
