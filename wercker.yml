@@ -49,12 +49,12 @@ deploy:
   steps:
     - script:
         name: hyper version
-        code: -v
+        code: hyper -v
 
     - script:
         name: hyper config
-        code: config --accesskey $HYPER_ACCESSKEY --secretkey $HYPER_SECRETKEY
+        code: hyper config --accesskey $HYPER_ACCESSKEY --secretkey $HYPER_SECRETKEY
 
     - script:
         name: hyper ps -a
-        code: ps -a
+        code: hyper ps -a
