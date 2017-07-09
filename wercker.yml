@@ -50,7 +50,7 @@ deploy:
     - script: 
         name: install hyper-cli
         code: |
-          curl -L https://hyper-install.s3.amazonaws.com/hyper-linux-x86_64.tar.gz | tar xv 
+          curl -L https://hyper-install.s3.amazonaws.com/hyper-linux-x86_64.tar.gz | tar xvz
           ls .
           chmod u+x hyper
 
