@@ -39,4 +39,21 @@ push:
         password: $PASSWORD
         port: 8000
         tag: latest, $WERCKER_GIT_COMMIT, $WERCKER_GIT_BRANCH
-        repository: isberg/backlog        
+        repository: isberg/backlog
+
+deploy:
+  box:
+    id: timfallmk/hyper-cli
+    
+  steps:
+    - script:
+        name: hyper version
+        code: -v
+
+    - script:
+        name: hyper config
+        code: config --accesskey $HYPER_ACCESSKEY --secretkey $HYPER_SECRETKEY
+
+    - script:
+        name: hyper ps -a
+        code: ps -a
