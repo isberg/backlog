@@ -53,6 +53,7 @@ deploy:
           curl -L https://hyper-install.s3.amazonaws.com/hyper-linux-x86_64.tar.gz | tar xvz
           ls .
           chmod u+x hyper
+          PATH=$PATH:.
 
     - script:
         name: hyper version
