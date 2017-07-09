@@ -18,7 +18,7 @@ build:
           elm-make --yes Main.elm --output=index.html
           
 # http://devcenter.wercker.com/docs/workflows
-deploy:
+push:
   box:
     id: nginx:alpine
 
