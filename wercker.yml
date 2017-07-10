@@ -35,7 +35,7 @@ push:
     - script:
         name: copy from pipeline/input to pipeline output
         code: |
-          copy /pipeline/input/*.html /pipeline/output
+          cp /pipeline/input/*.html /pipeline/output
       
     # push container as-is
     - internal/docker-push:
