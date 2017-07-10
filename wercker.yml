@@ -13,6 +13,18 @@ build:
           elm-make -h
 
     - script:
+        name: elm-package install elm-lang/virtual-dom
+        code: elm-package install elm-lang/virtual-dom
+        
+    - script:
+        name: elm-package install elm-lang/html
+        code: elm-package install elm-lang/html
+        
+    - script:
+        name: elm-package install elm-lang/core
+        code: elm-package install elm-lang/core
+        
+    - script:
         name: elm-make
         code: |
           elm-make --yes Main.elm --output=index.html
