@@ -11,18 +11,10 @@ build:
         name: debug elm
         code: |
           elm-make -h
-
-    - script:
-        name: install elm-lang/virtual-dom
-        code: elm-package install elm-lang/virtual-dom  --yes
         
     - script:
-        name: install elm-lang/html
-        code: elm-package install elm-lang/html --yes
-        
-    - script:
-        name: install elm-lang/core
-        code: elm-package install elm-lang/core --yes
+        name: count cpus
+        code: nproc --all
         
     - script:
         name: elm-make
