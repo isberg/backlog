@@ -13,16 +13,16 @@ build:
           elm-make -h
 
     - script:
-        name: elm-package install elm-lang/virtual-dom
-        code: elm-package install elm-lang/virtual-dom
+        name: install elm-lang/virtual-dom
+        code: elm-package install elm-lang/virtual-dom  --yes
         
     - script:
-        name: elm-package install elm-lang/html
-        code: elm-package install elm-lang/html
+        name: install elm-lang/html
+        code: elm-package install elm-lang/html --yes
         
     - script:
-        name: elm-package install elm-lang/core
-        code: elm-package install elm-lang/core
+        name: install elm-lang/core
+        code: elm-package install elm-lang/core --yes
         
     - script:
         name: elm-make
