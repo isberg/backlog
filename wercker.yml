@@ -13,13 +13,21 @@ build:
           elm-make -h
         
     - script:
+        name: install cpucounthack
+        code: |
+          git clone https://github.com/obmarg/libsysconfcpus.git
+          cd libsysconfcpus
+          ./configure && make && make install
+          sysconfcpus -n 2  nproc --all
+        
+    - script:
         name: count cpus
         code: nproc --all
         
     - script:
         name: elm-make
         code: |
-          elm-make --yes Main.elm --output=index.html
+          sysconfcpus -n 2 elm-make --yes Main.elm --output=index.html
           
     - script:
         name: cleanup build result
