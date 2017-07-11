@@ -89,7 +89,7 @@ deploy:
         name: deploy to hyper
         code: |
           hyper stop backlog && hyper rm backlog 
-          hyper run -d -P --name backlog --size=s1 isberg/backlog nginx -g "daemon off;"
+          hyper run -d -P --name backlog --size=s1 isberg/backlog:$WERCKER_GIT_COMMIT nginx -g "daemon off;"
           hyper fip attach 199.245.57.116 backlog
     - script:
         name: hyper ps -a
