@@ -90,7 +90,7 @@ deploy:
         code: |
           hyper stop backlog && hyper rm backlog 
           hyper run -d -P --name backlog --size=s1 isberg/backlog nginx -g "daemon off;"
-          
+          hyper fip attach 199.245.57.116 backlog
     - script:
         name: hyper ps -a
         code: hyper ps -a
