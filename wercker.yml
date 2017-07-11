@@ -88,7 +88,7 @@ deploy:
     - script:
         name: deploy to hyper
         code: |
-          hyper run --rm --name backlog --size=s1 isberg/backlog nginx -g "daemon off;"
+          hyper run -d --rm --name backlog --size=s1 isberg/backlog nginx -g "daemon off;"
           
     - script:
         name: hyper ps -a
