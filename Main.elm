@@ -6,32 +6,43 @@ import Html.Attributes exposing (value)
 main =
   beginnerProgram { model = model, view = view, update = update }
 
-
-model = { backlog = [ "Story 1", "Story 2"], new = "" }
+type alias Model = { backlog : List String, new : String }
+model = 
+  { backlog = [ "Story 1", "Story 2"]
+  , new = "" 
+  }
 
 view model =
   div []
     [ h1 [] [ text "Backlog" ]
-    , storyListView model.backlog
+    , storiesView model.backlog
     , input [onInput Change, value model.new] []
     , button [onClick Add ] [text "Add"]
     ]
 
-storyListView model = 
+storiesView model = 
   let
-    itemView item = li[onClick (Remove item)] [text item]
+    storyView item = li[onClick (Remove item)] [text item]
   in
-    ul [] (List.map itemView model)
+    ul [] (List.map storyView model)
   
 
-type Msg = Add | Change String | Remove String
+type Msg 
+  = Add 
+  | Change String 
+  | Remove String
 
 
-update msg model = 
+update msg { backlog, new } = 
   case msg of
     Add ->
-      {model | backlog = model.new :: model.backlog, new = "" }
-    Change new ->
-      {model | new = new }
+      Model (new :: backlog) "" 
+
+    Change newer ->
+      Model backlog newer 
+
     Remove story ->
-      {model | backlog = (List.filter (\x -> x /= story) model.backlog), new = story}
+      let
+        backlog_ = List.filter (\x -> x /= story) backlog
+      in
+        Model backlog_ story 
