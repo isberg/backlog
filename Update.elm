@@ -20,7 +20,7 @@ update msg { backlog, new } =
             Model (new :: backlog) ""
                 ! [ focusInput, store new ]
 
-        Change newer ->
+        ChangeNew newer ->
             Model backlog newer
                 ! [ focusInput ]
 

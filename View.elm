@@ -11,7 +11,7 @@ view model =
     div []
         [ h1 [] [ text "Backlog" ]
         , storiesView model.backlog
-        , input [ onInput Change, value model.new, autofocus True, id "newStory" ] []
+        , input [ onInput ChangeNew, value model.new, autofocus True, id "newStory" ] []
         , button [ onClick Add ] [ text "Add" ]
         ]
 
@@ -19,6 +19,6 @@ view model =
 storiesView model =
     let
         storyView item =
-            li [ onClick (Remove item) ] [ text item ]
+            li [] [ text item, button [ onClick (Remove item) ] [ text "X" ] ]
     in
         ul [] (List.map storyView model)

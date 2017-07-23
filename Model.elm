@@ -7,7 +7,7 @@ type alias Model =
 
 type Msg
     = Add
-    | Change String
+    | ChangeNew String
     | Remove String
     | NoOp
     | Loaded (List String)
