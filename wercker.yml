@@ -45,10 +45,12 @@ push:
         name: copy files to nginx
         code: |
           cp /pipeline/source/index.html /usr/share/nginx/html
+          cp /pipeline/source/system.js /usr/share/nginx/html
     - script:
         name: copy from pipeline/source to pipeline output
         code: |
           cp /pipeline/source/*.html /pipeline/output
+          cp /pipeline/source/*.js /pipeline/output
       
     # push container as-is
     - internal/docker-push:

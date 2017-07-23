@@ -4,3 +4,5 @@ elm-stuff
 repl-temp-*
 # vim temporary files
 *~
+# elm-make generated file
+system.js
