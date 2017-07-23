@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="system.js"></script>
+	</head>
+	<body>
+		<div id="elm"></div>
+		<script>
+console.log("Elm", Elm);
+console.log("Elm.Main", Elm.Main);
+var node = document.getElementById("elm");
+var app = Elm.Main.embed(node);
+console.log("app:", app);
+console.log("app.ports:", app.ports);
+
+app.ports.store.subscribe(function(story) {
+	console.log("[js] store:", story);
+	localStorage.setItem(story,story);
+	console.log(localStorage);
+});
+
+app.ports.remove.subscribe(function(story) {
+	console.log("[js] remove:", story);
+	localStorage.removeItem(story);
+	console.log(localStorage);
+});
+
+app.ports.load.subscribe(function() {
+	var stories = allStorage();
+	console.log("[js] load", stories);
+	app.ports.loaded.send(stories);
+});
+
+function allStorage() {
+	var 	values = [],
+		keys = Object.keys(localStorage),
+		i = keys.length;
+
+	while ( i-- ) {
+		values.push( localStorage.getItem(keys[i]) );
+	}
+
+	return values;
+}
+		</script>
+	</body>
+</html>
+
