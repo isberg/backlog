@@ -28,7 +28,7 @@ build:
     - script:
         name: elm-make
         code: |
-          sysconfcpus -n 2 elm-make --yes Main.elm --output=index.html
+          sysconfcpus -n 2 elm-make --yes Main.elm --output=system.js
           
     - script:
         name: cleanup build result
