@@ -1,6 +1,6 @@
 port module Update exposing (update, init, subscriptions)
 
-import Model exposing (Model, Msg(..))
+import Model exposing (Model, Msg(..), Story)
 import Dom
 import Task
 
@@ -18,7 +18,7 @@ update msg { backlog, new } =
     case msg of
         Add ->
             Model (new :: backlog) ""
-                ! [ focusInput, store new ]
+                ! [ focusInput, storeAll (new :: backlog) ]
 
         ChangeNew newer ->
             Model backlog newer
@@ -30,7 +30,7 @@ update msg { backlog, new } =
                     List.filter (\x -> x /= story) backlog
             in
                 Model backlog_ story
-                    ! [ focusInput, remove story ]
+                    ! [ focusInput, storeAll backlog_ ]
 
         NoOp ->
             Model backlog new
@@ -50,16 +50,13 @@ focusInput =
         Dom.focus "newStory" |> Task.attempt ignoreResult
 
 
-port store : String -> Cmd msg
-
-
-port remove : String -> Cmd msg
+port storeAll : List Story -> Cmd msg
 
 
 port load : () -> Cmd msg
 
 
-port loaded : (List String -> msg) -> Sub msg
+port loaded : (List Story -> msg) -> Sub msg
 
 
 subscriptions : Model -> Sub Msg

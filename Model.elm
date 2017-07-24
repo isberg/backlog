@@ -1,13 +1,17 @@
-module Model exposing (Model, Msg(..))
+module Model exposing (Model, Msg(..), Story)
 
 
 type alias Model =
-    { backlog : List String, new : String }
+    { backlog : List Story, new : String }
+
+
+type alias Story =
+    String
 
 
 type Msg
     = Add
     | ChangeNew String
-    | Remove String
+    | Remove Story
     | NoOp
-    | Loaded (List String)
+    | Loaded (List Story)

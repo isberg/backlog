@@ -15,35 +15,18 @@ var app = Elm.Main.embed(node);
 console.log("app:", app);
 console.log("app.ports:", app.ports);
 
-app.ports.store.subscribe(function(story) {
-	console.log("[js] store:", story);
-	localStorage.setItem(story,story);
-	console.log(localStorage);
-});
-
-app.ports.remove.subscribe(function(story) {
-	console.log("[js] remove:", story);
-	localStorage.removeItem(story);
+app.ports.storeAll.subscribe(function(stories) {
+	console.log("[js] storeAll:", stories);
+	localStorage.setItem("backlog",stories);
 	console.log(localStorage);
 });
 
 app.ports.load.subscribe(function() {
-	var stories = allStorage();
+	var stories = localStorage.getItem("backlog");
 	console.log("[js] load", stories);
-	app.ports.loaded.send(stories);
+	app.ports.loaded.send(stories.split(','));
 });
 
-function allStorage() {
-	var 	values = [],
-		keys = Object.keys(localStorage),
-		i = keys.length;
-
-	while ( i-- ) {
-		values.push( localStorage.getItem(keys[i]) );
-	}
-
-	return values;
-}
 		</script>
 	</body>
 </html>
