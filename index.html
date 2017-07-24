@@ -17,14 +17,19 @@ console.log("app.ports:", app.ports);
 
 app.ports.storeAll.subscribe(function(stories) {
 	console.log("[js] storeAll:", stories);
-	localStorage.setItem("backlog",stories);
+	if (stories.length > 0)
+		localStorage.setItem("backlog",stories);
+	else
+		localStorage.removeItem("backlog");
+
 	console.log(localStorage);
 });
 
 app.ports.load.subscribe(function() {
-	var stories = localStorage.getItem("backlog");
+	var stories = localStorage.getItem("backlog")
 	console.log("[js] load", stories);
-	app.ports.loaded.send(stories.split(','));
+	var tmp = stories == null ? [] : stories.split(',');
+	app.ports.loaded.send(tmp);
 });
 
 		</script>
