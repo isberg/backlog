@@ -15,3 +15,4 @@ type Msg
     | Remove Story
     | NoOp
     | Loaded (List Story)
+    | Up Story

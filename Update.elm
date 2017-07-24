@@ -40,6 +40,31 @@ update msg { backlog, new } =
             Model stories ""
                 ! []
 
+        Up story ->
+            let
+                backlog_ =
+                    up backlog story
+            in
+                Model backlog_ new
+                    ! [ focusInput, storeAll backlog_ ]
+
+
+up backlog story =
+    case backlog of
+        [] ->
+            backlog
+
+        _ :: [] ->
+            backlog
+
+        head :: (current :: tail) ->
+            case current == story of
+                True ->
+                    current :: head :: tail
+
+                False ->
+                    head :: (up (current :: tail) story)
+
 
 focusInput : Cmd Msg
 focusInput =

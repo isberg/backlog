@@ -19,6 +19,10 @@ view model =
 storiesView model =
     let
         storyView item =
-            li [] [ text item, button [ onClick (Remove item) ] [ text "X" ] ]
+            li []
+                [ button [ onClick (Up item) ] [ text "+" ]
+                , text item
+                , button [ onClick (Remove item) ] [ text "X" ]
+                ]
     in
         ul [] (List.map storyView model)
